@@ -1,0 +1,50 @@
+# Perceptron with input in X and labels at Y (Classification with decision boundary)(without offset)
+
+import numpy as np
+
+X = np.array([
+    [-1,0],
+    [0,1],
+
+])
+
+y = np.array([1,1])
+
+def perceptron_sgd(X, Y):
+    count = 0 
+    w = np.zeros(len(X[0]))
+    eta = 1
+    epochs = 20
+
+    for t in range(epochs):
+        for i, x in enumerate(X):
+            if (np.dot(X[i], w)*Y[i]) <= 0:
+                w = w + eta*X[i]*Y[i]
+                count = count +1
+
+    return w,count
+
+# Perceptron with offset
+
+def perceptron_sgd_offset(X, Y):
+    count = 0
+    w = np.zeros(len(X[0]))
+    eta = 1
+    T = 5
+    naught = 0
+
+    for t in range(T):
+        for i, x in enumerate(X):
+            if ((np.dot(X[i], w)*Y[i])+ naught) <= 0:
+                print(X[i])
+                w = w + X[i]*Y[i]
+                naught = naught + Y[i]
+                count = count + 1
+                print(w)
+                print(naught)
+
+    return w,naught,count
+w,count = perceptron_sgd(X,y)
+#w,naught,count = perceptron_sgd_offset(X,y)
+print(w)
+print(count)
