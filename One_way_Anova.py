@@ -5,9 +5,7 @@
 import pandas as pd
 import numpy as np
 
-Data = pd.read_csv('D:/Kaggle/train.csv')
-#print(Data.head())
-print(Data.columns)
+
 
 def Kushkal_Wallis(df):
     df.columns = ['Categorical','Numerical']
